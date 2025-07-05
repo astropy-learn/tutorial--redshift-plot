@@ -1,0 +1,94 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+
+zvals = np.arange(0, 6, 0.1)
+dist = cosmo.angular_diameter_distance(zvals)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnumpy[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mnp[39;00m
+[32m      3[39m zvals = np.arange([32m0[39m, [32m6[39m, [32m0.1[39m)
+[32m----> [39m[32m4[39m dist = [43mcosmo[49m[43m.[49m[43mangular_diameter_distance[49m[43m([49m[43mzvals[49m[43m)[49m
+
+[36mFile [39m[32m/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/astropy/cosmology/_src/flrw/base.py:1275[39m, in [36mFLRW.angular_diameter_distance[39m[34m(self, z)[39m
+[32m   1249[39m [38;5;250m[39m[33;03m"""Angular diameter distance in Mpc at a given redshift.[39;00m
+[32m   1250[39m 
+[32m   1251[39m [33;03mThis gives the proper (sometimes called 'physical') transverse[39;00m
+[32m   (...)[39m[32m   1272[39m [33;03m.. [3] Peebles, P. (1993). Principles of Physical Cosmology, pp 325-327.[39;00m
+[32m   1273[39m [33;03m"""[39;00m
+[32m   1274[39m z = aszarr(z)
+[32m-> [39m[32m1275[39m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mcomoving_transverse_distance[49m[43m([49m[43mz[49m[43m)[49m / (z + [32m1.0[39m)
+
+[36mFile [39m[32m/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/astropy/cosmology/_src/flrw/base.py:1209[39m, in [36mFLRW.comoving_transverse_distance[39m[34m(self, z)[39m
+[32m   1183[39m [38;5;129m@deprecated_keywords[39m([33m"[39m[33mz[39m[33m"[39m, since=[33m"[39m[33m7.0[39m[33m"[39m)
+[32m   1184[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcomoving_transverse_distance[39m([38;5;28mself[39m, z):
+[32m   1185[39m [38;5;250m    [39m[33mr[39m[33;03m"""Comoving transverse distance in Mpc at a given redshift.[39;00m
+[32m   1186[39m 
+[32m   1187[39m [33;03m    This value is the transverse comoving distance at redshift ``z``[39;00m
+[32m   (...)[39m[32m   1207[39m [33;03m    This quantity is also called the 'proper motion distance' in some texts.[39;00m
+[32m   1208[39m [33;03m    """[39;00m
+[32m-> [39m[32m1209[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_comoving_transverse_distance_z1z2[49m[43m([49m[32;43m0[39;49m[43m,[49m[43m [49m[43mz[49m[43m)[49m
+
+[36mFile [39m[32m/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/astropy/cosmology/_src/flrw/base.py:1237[39m, in [36mFLRW._comoving_transverse_distance_z1z2[39m[34m(self, z1, z2)[39m
+[32m   1212[39m [38;5;250m[39m[33mr[39m[33;03m"""Comoving transverse distance in Mpc between two redshifts.[39;00m
+[32m   1213[39m 
+[32m   1214[39m [33;03mThis value is the transverse comoving distance at redshift ``z2`` as[39;00m
+[32m   (...)[39m[32m   1234[39m [33;03mThis quantity is also called the 'proper motion distance' in some texts.[39;00m
+[32m   1235[39m [33;03m"""[39;00m
+[32m   1236[39m Ok0 = [38;5;28mself[39m.Ok0
+[32m-> [39m[32m1237[39m dc = [38;5;28;43mself[39;49m[43m.[49m[43m_comoving_distance_z1z2[49m[43m([49m[43mz1[49m[43m,[49m[43m [49m[43mz2[49m[43m)[49m
+[32m   1238[39m [38;5;28;01mif[39;00m Ok0 == [32m0[39m:
+[32m   1239[39m     [38;5;28;01mreturn[39;00m dc
+
+[36mFile [39m[32m/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/astropy/cosmology/_src/flrw/lambdacdm.py:395[39m, in [36mLambdaCDM._hypergeometric_comoving_distance_z1z2[39m[34m(self, z1, z2)[39m
+[32m    392[39m [38;5;66;03m# Use np.sqrt here to handle negative s (Om0>1).[39;00m
+[32m    393[39m prefactor = [38;5;28mself[39m.hubble_distance / np.sqrt(s * [38;5;28mself[39m.Om0)
+[32m    394[39m [38;5;28;01mreturn[39;00m prefactor * (
+[32m--> [39m[32m395[39m     [38;5;28;43mself[39;49m[43m.[49m[43m_T_hypergeometric[49m[43m([49m[43ms[49m[43m [49m[43m/[49m[43m [49m[43m([49m[43mz1[49m[43m [49m[43m+[49m[43m [49m[32;43m1.0[39;49m[43m)[49m[43m)[49m
+[32m    396[39m     - [38;5;28mself[39m._T_hypergeometric(s / (z2 + [32m1.0[39m))
+[32m    397[39m )
+
+[36mFile [39m[32m/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/astropy/cosmology/_src/flrw/lambdacdm.py:419[39m, in [36mLambdaCDM._T_hypergeometric[39m[34m(self, x)[39m
+[32m    399[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_T_hypergeometric[39m([38;5;28mself[39m, x, /):
+[32m    400[39m [38;5;250m    [39m[33mr[39m[33;03m"""Compute value using Gauss Hypergeometric function 2F1.[39;00m
+[32m    401[39m 
+[32m    402[39m [33;03m    .. math::[39;00m
+[32m   (...)[39m[32m    417[39m [33;03m       in a flat cosmology. MNRAS, 468(1), 927-930.[39;00m
+[32m    418[39m [33;03m    """[39;00m
+[32m--> [39m[32m419[39m     [38;5;28;01mreturn[39;00m [32m2[39m * np.sqrt(x) * [43mhyp2f1[49m[43m([49m[32;43m1.0[39;49m[43m [49m[43m/[49m[43m [49m[32;43m6[39;49m[43m,[49m[43m [49m[32;43m1.0[39;49m[43m [49m[43m/[49m[43m [49m[32;43m2[39;49m[43m,[49m[43m [49m[32;43m7.0[39;49m[43m [49m[43m/[49m[43m [49m[32;43m6[39;49m[43m,[49m[43m [49m[43m-[49m[43m([49m[43mx[49m[43m*[49m[43m*[49m[32;43m3[39;49m[43m)[49m[43m)[49m
+
+[36mFile [39m[32m/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/astropy/cosmology/_src/flrw/lambdacdm.py:27[39m, in [36mhyp2f1[39m[34m(*args, **kwargs)[39m
+[32m     26[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mhyp2f1[39m(*args, **kwargs):
+[32m---> [39m[32m27[39m     [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m([33m"[39m[33mNo module named [39m[33m'[39m[33mscipy.special[39m[33m'[39m[33m"[39m)
+
+[31mModuleNotFoundError[39m: No module named 'scipy.special'
+
