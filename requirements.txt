@@ -2,3 +2,4 @@ astropy
 IPython
 matplotlib
 numpy
+scipy
